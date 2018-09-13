@@ -41,12 +41,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/values/all', async (req, res) => {
+  // get data from postgres
   const values = await pgClient.query('SELECT * from values');
 
   res.send(values.rows);
 });
 
 app.get('values/current', (req, res) => {
+  // get data from redis
   redisClient.hgetall('values', (err, values) => {
     res.send(values);
   });
