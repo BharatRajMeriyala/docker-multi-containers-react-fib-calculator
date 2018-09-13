@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const redis = require('redis');
 //
 const { Pool } = require('pg');
 //
@@ -25,3 +26,11 @@ const pgClient = new Pool({
 pgClient.query('CREATE TABLE IF NOT EXISTS values (number INT)').catch(err => {
   console.log('err: ', err);
 });
+
+// Redis Client Setup
+const redisClient = redis.createClient({
+  host: keys.redisHost,
+  port: keys.redisPort,
+  retry_strategy: () => 1000
+});
+const redisPublisher = redisClient.duplicate();
