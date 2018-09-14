@@ -54,7 +54,7 @@ app.get('values/current', (req, res) => {
   });
 });
 
-app.postMessage('/values', async (req, res) => {
+app.post('/values', async (req, res) => {
   const index = req.body.index;
 
   if (parseInt(index) > 40) {
