@@ -8,8 +8,8 @@ class SeenIndexes extends Component {
 
   componentDidMount = async () => {
     // get data from postgres
-    const { dataL: seenIndexes } = await axios.get('/api/values/all');
-    this.setState({ seenIndexes });
+    const { data: seenIndexes } = await axios.get('/api/values/all');
+    this.setState({ seenIndexes: seenIndexes.map(({ number }) => number) });
   };
 
   render() {
@@ -18,6 +18,9 @@ class SeenIndexes extends Component {
     return (
       <div>
         <h3>Seen Indexes</h3>
+        {seenIndexes.map((index, idx) => {
+          return <div key={idx}>{index}</div>;
+        })}
       </div>
     );
   }

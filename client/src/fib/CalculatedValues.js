@@ -18,6 +18,14 @@ class CalculatedValues extends Component {
     return (
       <div>
         <h3>Calculated Values</h3>
+        {Object.keys(values).map(key => {
+          const value = values[key];
+          return (
+            <div key={key}>
+              {key}: {value}
+            </div>
+          );
+        })}
       </div>
     );
   }

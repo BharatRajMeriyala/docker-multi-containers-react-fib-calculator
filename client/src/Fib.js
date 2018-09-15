@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 //
 import SeenIndexes from './fib/SeenIndexes';
@@ -10,17 +11,20 @@ class Fib extends Component {
     index: '',
   };
 
+  handelOnSubmit = async e => {
+    e.preventDefault();
+    const { index } = this.state;
+    const { data } = await axios.post('/api/values', { index });
+    console.log('data: ', data);
+    this.setState({ index: '' });
+  };
+
   render() {
     const { index } = this.state;
     return (
       <div>
         <div>Fib</div>
-        <form
-          onSubmit={e => {
-            e.preventDefault();
-            this.setState({ index });
-          }}
-        >
+        <form onSubmit={this.handelOnSubmit}>
           <label htmlFor="some-input">label</label>
           <input
             type="text"
