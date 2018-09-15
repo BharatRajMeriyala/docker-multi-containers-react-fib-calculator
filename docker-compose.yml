@@ -4,8 +4,9 @@ services:
     restart: always
     build: 
       dockerfile: Dockerfile.dev
-      conetext: ./nginx
-      port: '3050:80'
+      context: ./nginx
+    ports: 
+      - '3050:80'
   postgres:
     image: 'postgres:latest'
   redis:
@@ -37,5 +38,5 @@ services:
       dockerfile: Dockerfile.dev
       context: ./worker
     volumes:
-      - app/node_modules
-      - ./worker:app
+      - /app/node_modules
+      - ./worker:/app
