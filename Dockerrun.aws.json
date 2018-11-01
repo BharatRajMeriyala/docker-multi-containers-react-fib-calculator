@@ -2,28 +2,28 @@
   "AWSEBDockerrunVersion": 2,
   "containerDefinitions": [{
       "name": "client",
-      "image": "sean0923/multi-client",
+      "image": "bharaj/multi-client",
       "hostname": "client",
       "essential": false,
       "memory": 128
     },
     {
       "name": "server",
-      "image": "sean0923/multi-server",
+      "image": "bharaj/multi-server",
       "hostname": "api",
       "essential": false,
       "memory": 128
     },
     {
       "name": "worker",
-      "image": "sean0923/multi-worker",
+      "image": "bharaj/multi-worker",
       "hostname": "worker",
       "essential": false,
       "memory": 128
     },
     {
       "name": "nginx",
-      "image": "sean0923/multi-nginx",
+      "image": "bharaj/multi-nginx",
       "hostname": "nginx",
       "essential": true,
       "portMappings": [{
